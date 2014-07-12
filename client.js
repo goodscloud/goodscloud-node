@@ -1,10 +1,13 @@
-var request = require('request');
-var crypto = require('crypto')
+var crypto = require('crypto');
+var request = require('request');  // https://github.com/mikeal/request
 
 var serialize_params = function (params) {
     var par_lst = [];
     Object.keys(params).forEach(function(k) {
-        this.push(k + '=' + params[k]);
+        this.push(
+            k + '=' +
+            ((typeof params[k] === 'object') ? JSON.stringify(params[k]) : params[k])
+        );
     }, par_lst);
     par_lst.sort();
     return par_lst.join('&');
