@@ -88,8 +88,9 @@ Client.prototype.get = function (endpoint, params, callback) {
         }
     });
 };
-Client.prototype.put   = function (endpoint, params, data, callback) {};
-Client.prototype.post  = function (endpoint, params, data, callback) {};
+Client.prototype.put = function (endpoint, params, data, callback) {};
+Client.prototype.post = function (endpoint, params, data, callback) {};
 Client.prototype.patch = function (endpoint, params, data, callback) {};
+Client.prototype.delete = function (endpoint, callback) {};
 
 module.exports = Client
