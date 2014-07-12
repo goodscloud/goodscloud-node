@@ -82,7 +82,7 @@ Client.prototype.get = function (endpoint, params, callback) {
             console.log(response.statusCode);
             console.log(body);
         } else {
-            callback(body);
+            callback(JSON.parse(body));
         }
     });
 };
