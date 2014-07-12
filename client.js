@@ -46,10 +46,10 @@ Client.prototype.login = function (email, password, callback) {
     }, (function (client) {
         return function(error, response, body) {
             if (error) {
-                console.log(error);
+                console.error(error);
             } else if (response.statusCode != 200) {
-                console.log(response.statusCode);
-                console.log(body);
+                console.warn(response.statusCode);
+                console.warn(body);
             } else {
                 var r = JSON.parse(body);
                 if (r.email) {
@@ -60,7 +60,7 @@ Client.prototype.login = function (email, password, callback) {
                         callback();
                     }
                 } else {
-                    console.log("Authentication failed.");
+                    console.warn("Authentication failed.");
                 }
             }
         }
@@ -79,10 +79,10 @@ Client.prototype.get = function (endpoint, params, callback) {
         method: 'GET'
     }, function (error, response, body) {
         if (error) {
-            console.log(error);
+            console.error(error);
         } else if (response.statusCode < 200 || response.statusCode >= 300) {
-            console.log(response.statusCode);
-            console.log(body);
+            console.warn(response.statusCode);
+            console.warn(body);
         } else if (callback) {
             callback(JSON.parse(body));
         }
