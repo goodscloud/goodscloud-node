@@ -13,13 +13,13 @@ var serialize_params = function (params) {
     return par_lst.join('&');
 }
 
-var sign = function(auth, verb, path, params, payload, expires) {
+var sign = function(auth, method, path, params, payload, expires) {
     var exp_str = new Date((new Date()).getTime() + 1000 * (expires || 60)).toISOString();
     params.key = auth.app_key;
     params.token = auth.app_token;
     params.expires = exp_str;
     var to_sign = [
-        verb, path,
+        method, path,
         crypto.createHash('md5').update(serialize_params(params)).digest('hex'),
         crypto.createHash('md5').update(payload || '').digest('hex'),
         auth.app_token, exp_str
@@ -68,18 +68,18 @@ Client.prototype.login = function (email, password, callback) {
     );
 };
 
-Client.prototype.http = function (verb, endpoint, params, data, callback) {
+Client.prototype.http = function (method, endpoint, params, data, callback) {
     if (typeof data === 'object') {
         data = JSON.stringify(data);
     }
-    sign(this.auth, verb, endpoint, params, data);
+    sign(this.auth, method, endpoint, params, data);
     var uri = this.uri + endpoint;
     if (Object.keys(params).length) {
         uri += '?' + serialize_params(params);
     }
     request({
         uri: uri,
-        method: verb,
+        method: method,
         headers: {"Content-Type": "application/json"},
         body: data
     }, function (error, response, body) {
@@ -89,7 +89,7 @@ Client.prototype.http = function (verb, endpoint, params, data, callback) {
             console.warn(response.statusCode);
             console.warn(body);
         } else if (callback) {
-            callback(verb !== 'DELETE' ? JSON.parse(body) : {});
+            callback(method !== 'DELETE' ? JSON.parse(body) : {});
         }
     });
 };
