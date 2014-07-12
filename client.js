@@ -56,7 +56,9 @@ Client.prototype.login = function (email, password, callback) {
                     client.email = r.email;
                     client.auth = r.auth;
                     client.company = r.company
-                    callback();
+                    if (callback) {
+                        callback();
+                    }
                 } else {
                     console.log("Authentication failed.");
                 }
@@ -81,7 +83,7 @@ Client.prototype.get = function (endpoint, params, callback) {
         } else if (response.statusCode < 200 || response.statusCode >= 300) {
             console.log(response.statusCode);
             console.log(body);
-        } else {
+        } else if (callback) {
             callback(JSON.parse(body));
         }
     });
