@@ -1,4 +1,4 @@
-# GoodsCloud API client for JavaScript / Node.js
+# GoodsCloud API client in JavaScript for Node.js
 
 ## Requirements
 
