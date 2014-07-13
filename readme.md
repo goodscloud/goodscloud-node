@@ -10,7 +10,7 @@ This package depends on the [request](https://github.com/mikeal/request) package
 
 Use the client like this:
 
-```
+```javascript
 var Client = require('./goodscloud');
 var c = new Client('http://sandbox.goodscloud.com');
 c.login('me@mycompany.com', 'PASSWORD',
