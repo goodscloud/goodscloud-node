@@ -78,8 +78,8 @@ Client.prototype.http = function (method, endpoint) {
             // GET with params
             params = arguments[2];
             callback = arguments[3];
-        } else if (['PUT', 'POST', 'PATCH'].indexOf(method) != -1) {
-            // PUT, PATCH, POST with data and without params
+        } else if (['PUT', 'POST'].indexOf(method) != -1) {
+            // PUT or POST with data and without params
             data = arguments[2];
             callback = arguments[3];
         }

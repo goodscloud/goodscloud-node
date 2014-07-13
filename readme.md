@@ -32,11 +32,14 @@ Function calls corresponding to `HTTP` method verbs have different default and o
     * `get(endpoint, params);`
     * `get(endpoint,         callback);`
     * `get(endpoint, params, callback);`
- * `Client.put()`, `Client.post()`, and `Client.patch()` always require a `data` argument to be provided. They allow the following call signatures:
+ * `Client.put()` and `Client.post()` always require a `data` argument to be provided. They allow the following call signatures:
     * `func(endpoint,         data);`
     * `func(endpoint, params, data);`
     * `func(endpoint,         data, callback);`
     * `func(endpoint, params, data, callback);`
+ * `Client.patch()` always requires both `params` and `data` arguments to be provided. It allows the following call signatures:
+    * `patch(endpoint, params, data);`
+    * `patch(endpoint, params, data, callback);`
  * `Client.delete()` allows the following call signatures:
     * `delete(endpoint);`
     * `delete(endpoint, callback);`
