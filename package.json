@@ -1,0 +1,23 @@
+{
+  "name": "goodscloud",
+  "description": "GoodsCloud API client.",
+  "tags": [],
+  "version": "0.0.1",
+  "author": "Matt Chisholm <matt@goodscloud.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/goodscloud/goodscloud-node.git"
+  },
+  "bugs": {
+    "url": "http://github.com/goodscloud/goodscloud-node/issues"
+  },
+  "license": "Apache-2.0",
+  "engines": [
+    "node >= 0.10.29"
+  ],
+  "main": "goodscloud.js",
+  "dependencies": {
+    "request": "~2.37.1",
+  },
+  "optionalDependencies": {},
+}
