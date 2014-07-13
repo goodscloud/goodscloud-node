@@ -11,7 +11,7 @@
   "bugs": {
     "url": "http://github.com/goodscloud/goodscloud-node/issues"
   },
-  "license": "Apache-2.0",
+  "license": "BSD-3-Clause",
   "engines": [
     "node >= 0.10.29"
   ],
