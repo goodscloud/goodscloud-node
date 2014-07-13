@@ -1,5 +1,5 @@
 var crypto = require('crypto');
-var request = require('request');  // https://github.com/mikeal/request
+var request = require('request');
 
 var serialize_params = function (params) {
     var par_lst = [];
@@ -68,7 +68,32 @@ Client.prototype.login = function (email, password, callback) {
     );
 };
 
-Client.prototype.http = function (method, endpoint, params, data, callback) {
+Client.prototype.http = function (method, endpoint) {
+    var params = {}, data = '', callback = function () {};
+    if (typeof arguments[2] === 'function') {
+        // DELETE, or GET with no params
+        callback = arguments[2];
+    } else if (typeof arguments[3] === 'function') {
+        if (method === 'GET') {
+            // GET with params
+            params = arguments[2];
+            callback = arguments[3];
+        } else if (['PUT', 'POST', 'PATCH'].indexOf(method) != -1) {
+            // PUT, PATCH, POST with data and without params
+            data = arguments[2];
+            callback = arguments[3];
+        }
+    } else if (typeof arguments[4] === 'function') {
+        // PUT, PATCH, POST with data and params
+        params = arguments[2];
+        data = arguments[3];
+        callback = arguments[4];
+    } else {
+        // anything, with no callback
+        params = arguments[2] || {};
+        data = arguments[3] || '';
+    }
+
     if (typeof data === 'object') {
         data = JSON.stringify(data);
     }
@@ -88,14 +113,14 @@ Client.prototype.http = function (method, endpoint, params, data, callback) {
         } else if (response.statusCode < 200 || response.statusCode >= 300) {
             console.warn(response.statusCode);
             console.warn(body);
-        } else if (callback) {
+        } else {
             callback(method !== 'DELETE' ? JSON.parse(body) : {});
         }
     });
 };
 
 Client.prototype.get = function (endpoint, params, callback) {
-    this.http('GET', endpoint, params, '', callback);
+    this.http('GET', endpoint, params, callback);
 }
 Client.prototype.put = function (endpoint, params, data, callback) {
     this.http('PUT', endpoint, params, data, callback);
@@ -107,7 +132,7 @@ Client.prototype.patch = function (endpoint, params, data, callback) {
     this.http('PATCH', endpoint, params, data, callback);
 };
 Client.prototype.delete = function (endpoint, callback) {
-    this.http('DELETE', endpoint, {}, '', callback);
+    this.http('DELETE', endpoint, callback);
 };
 
 module.exports = Client
