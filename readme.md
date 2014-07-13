@@ -4,7 +4,7 @@
 
 Install this module with `npm`:
 
-    npm install git+https://github.com/goodscloud/goodscloud-node.git
+    npm install goodscloud
 
 ### Requirements
 
