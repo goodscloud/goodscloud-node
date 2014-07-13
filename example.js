@@ -1,4 +1,4 @@
-var Client = require('./client');
+var Client = require('./goodscloud');
 
 var c = new Client('http://sandbox.goodscloud.com');
 c.login('me@mycompany.com', 'PASSWORD',
