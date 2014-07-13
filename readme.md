@@ -2,13 +2,17 @@
 
 ## Installation
 
-Install this module with `npm`:
+Install the latest stable release of this module from [npmjs.org](https://www.npmjs.org/package/goodscloud):
 
     npm install goodscloud
 
+Or install the development version from [github.com](https://github.com/goodscloud/goodscloud-node) with:
+
+    npm install git+https://github.com/goodscloud/goodscloud-node.git
+
 ### Requirements
 
-This package depends on the [request](https://github.com/mikeal/request) package by [Mikeal Rogers](https://github.com/mikeal). [request](https://github.com/mikeal/request) should be downloaded and installed by `npm` when installing this package, but if it is not, install it with:
+This package depends on the [request](https://www.npmjs.org/package/request) package by [Mikeal Rogers](https://github.com/mikeal). [request](https://www.npmjs.org/package/request) should be downloaded and installed by `npm` when installing this package, but if it is not, install it with:
 
     npm install request
 
