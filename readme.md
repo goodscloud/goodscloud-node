@@ -25,7 +25,7 @@ c.login('me@mycompany.com', 'PASSWORD',
 
 ### Call signatures
 
-Function calls corresponding to `HTTP` method verbs have different default and optional arguments.
+Function calls corresponding to `HTTP` method verbs have different optional arguments. In all cases, providing a `callback` is optional. If no `callback` is provided, the request will be executed but the response data will be discarded.
 
  * `Client.get()` allows the following call signatures:
     * `get(endpoint);`
@@ -43,6 +43,3 @@ Function calls corresponding to `HTTP` method verbs have different default and o
  * `Client.delete()` allows the following call signatures:
     * `delete(endpoint);`
     * `delete(endpoint, callback);`
-
-In all cases, `callback` is optional. If no `callback` is provided, the request will be executed but the response data will be discarded.
-
