@@ -53,3 +53,11 @@ Function calls corresponding to `HTTP` method verbs have different optional argu
  * `Client.delete()` allows the following call signatures:
     * `delete(endpoint);`
     * `delete(endpoint, callback);`
+
+## Releasing a new version:
+
+Release a new version like this:
+
+ 1. Update the version number in `package.json`
+ 2. Log in to npmjs.org with `npm adduser`
+ 3. Publish the package with `npm publish`
