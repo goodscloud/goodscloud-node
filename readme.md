@@ -1,8 +1,14 @@
 # GoodsCloud API client in JavaScript for Node.js
 
-## Requirements
+## Installation
 
-This package depends on the [request](https://github.com/mikeal/request) package by [Mikeal Rogers](https://github.com/mikeal). Install request with:
+Install this module with `npm`:
+
+    npm install git+https://github.com/goodscloud/goodscloud-node.git
+
+### Requirements
+
+This package depends on the [request](https://github.com/mikeal/request) package by [Mikeal Rogers](https://github.com/mikeal). [request](https://github.com/mikeal/request) should be downloaded and installed by `npm` when installing this package, but if it is not, install it with:
 
     npm install request
 
