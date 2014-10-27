@@ -2,7 +2,7 @@
   "name": "goodscloud",
   "description": "GoodsCloud API client.",
   "tags": [],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Matt Chisholm <matt@goodscloud.com>",
   "repository": {
     "type": "git",
