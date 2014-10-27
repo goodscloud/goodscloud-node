@@ -12,8 +12,9 @@ Or install the development version from [github.com](https://github.com/goodsclo
 
 ### Requirements
 
-This package depends on the [request](https://www.npmjs.org/package/request) package by [Mikeal Rogers](https://github.com/mikeal). [request](https://www.npmjs.org/package/request) should be downloaded and installed by `npm` when installing this package, but if it is not, install it with:
+This package depends on the [utf8](https://www.npmjs.org/package/utf8) package and the [request](https://www.npmjs.org/package/request) package by [Mikeal Rogers](https://github.com/mikeal). These should be downloaded and installed by `npm` when installing this package, but if they are not, install them with:
 
+    npm install utf8
     npm install request
 
 ## Usage

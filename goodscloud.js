@@ -1,3 +1,4 @@
+var utf8 = require('utf8');
 var crypto = require('crypto');
 var request = require('request');
 
@@ -21,7 +22,7 @@ var sign = function(auth, method, path, params, payload, expires) {
     var to_sign = [
         method, path,
         crypto.createHash('md5').update(serialize_params(params)).digest('hex'),
-        crypto.createHash('md5').update(payload || '').digest('hex'),
+        crypto.createHash('md5').update(utf8.encode(payload) || '').digest('hex'),
         auth.app_token, exp_str
     ].join('\n');
     params.sign = crypto.createHmac('sha1', auth.app_secret).update(to_sign).digest('base64');
