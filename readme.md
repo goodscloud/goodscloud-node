@@ -55,6 +55,27 @@ Function calls corresponding to `HTTP` method verbs have different optional argu
     * `delete(endpoint);`
     * `delete(endpoint, callback);`
 
+### Accessing product images
+
+Product images are stored on AWS S3. By default API client doesn't get AWS credentials issued. To get AWS enabled client set `use_aws` option to `true` when instantiating the client:
+
+```javascript
+var Client = require('goodscloud');
+var c = new Client('http://sandbox.goodscloud.com', {use_aws: true});
+c.login('me@mycompany.com', 'PASSWORD',
+  function () {
+    var params = {
+      results_per_page: 1
+    };
+
+    c.get('/api/internal/product_image', params, function (data) {
+      var product_image = data.objects[0];
+      console.log(c.build_product_image_url(product_image.url_fragment));
+    });
+  }
+);
+```
+
 ## Releasing a new version:
 
 Release a new version like this:
