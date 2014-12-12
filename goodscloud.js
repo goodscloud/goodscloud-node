@@ -28,8 +28,18 @@ var sign = function(auth, method, path, params, payload, expires) {
     params.sign = crypto.createHmac('sha1', auth.app_secret).update(to_sign).digest('base64');
 };
 
-var Client = function (uri) {
+var signed_s3_url = function (bucket, aws_key, aws_secret, aws_token, key, expires) {
+  var str = 'GET\n\n\n' + expires + '\nx-amz-security-token:' + aws_token + '\n/' + bucket + '/' + key,
+      str_hash = crypto.createHmac('sha1', aws_secret).update(str).digest('base64'),
+      query = '?Expires=' + expires + '&AWSAccessKeyId=' + aws_key +
+      '&Signature=' + encodeURIComponent(str_hash) + '&x-amz-security-token=' + encodeURIComponent(aws_token);
+
+  return 'https://s3-eu-west-1.amazonaws.com/' + bucket + '/' + key + query;
+};
+
+var Client = function (uri, options) {
     this.uri = uri;
+    this.options = options || {};
     this.logout();
 };
 
@@ -43,7 +53,7 @@ Client.prototype.login = function (email, password, callback) {
     request({
         uri: this.uri + '/session',
         method: "POST",
-        headers: {"GC-Email": email, "GC-Password": password}
+        headers: {"GC-Email": email, "GC-Password": password, 'GC-AWS': !!this.options.use_aws}
     }, (function (client) {
         return function(error, response, body) {
             if (error) {
@@ -134,6 +144,27 @@ Client.prototype.patch = function (endpoint, params, data, callback) {
 };
 Client.prototype.delete = function (endpoint, callback) {
     this.http('DELETE', endpoint, callback);
+};
+
+Client.prototype.build_url = function (bucket, url_fragment) {
+  var expires = Math.floor((new Date(this.auth.expires)).getTime() / 1000);
+
+  return signed_s3_url(bucket, this.auth.access, this.auth.secret, this.auth.token,
+                       this.auth.user_ns + url_fragment, expires);
+};
+
+Client.prototype.build_product_image_url = function (url_fragment) {
+  if (!this.auth.buckets) {
+    throw new Error('To build image urls you need to enable AWS access on the client...');
+  }
+  return this.build_url(this.auth.buckets.image, url_fragment);
+};
+
+Client.prototype.build_document_url = function (url_fragment) {
+  if (!this.auth.buckets) {
+    throw new Error('To build document urls you need to enable AWS access on the client...');
+  }
+  return this.build_url(this.auth.buckets.document, url_fragment);
 };
 
 module.exports = Client
