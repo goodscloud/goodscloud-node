@@ -83,3 +83,8 @@ Release a new version like this:
  1. Update the version number in `package.json`
  2. Log in to npmjs.org with `npm adduser`
  3. Publish the package with `npm publish`
+
+You won't be able to upload a new package if you're not one of the package owners. To become an owner you need to do several things:
+
+1. Create an account on `https://www.npmjs.com` if you don't have one already
+2. Ask one of the existing owners to add you as an owner. To get list of existing owners run this command `npm owner ls`
