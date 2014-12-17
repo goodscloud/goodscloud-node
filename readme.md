@@ -55,9 +55,9 @@ Function calls corresponding to `HTTP` method verbs have different optional argu
     * `delete(endpoint);`
     * `delete(endpoint, callback);`
 
-### Accessing product images
+### Accessing assets on Amazon S3
 
-Product images are stored on AWS S3. By default API client doesn't get AWS credentials issued. To get AWS enabled client set `use_aws` option to `true` when instantiating the client:
+Product images and shipping labels are stored on Amazon S3. By default the API client doesn't get AWS credentials issued. To get AWS enabled client set `use_aws` option to `true` when instantiating the client:
 
 ```javascript
 var Client = require('goodscloud');
