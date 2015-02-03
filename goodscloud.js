@@ -167,4 +167,11 @@ Client.prototype.build_document_url = function (url_fragment) {
   return this.build_url(this.auth.buckets.document, url_fragment);
 };
 
+Client.prototype.build_shipping_label_url = function (url_fragment) {
+  if (!this.auth.buckets) {
+    throw new Error('To build shipping label urls you need to enable AWS access on the client...');
+  }
+  return this.build_url(this.auth.buckets.shipping_label, url_fragment);
+};
+
 module.exports = Client
