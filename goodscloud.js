@@ -149,22 +149,21 @@ Client.prototype.delete = function (endpoint, callback) {
 Client.prototype.build_url = function (bucket, url_fragment) {
   var expires = Math.floor((new Date(this.auth.expires)).getTime() / 1000);
 
-  return signed_s3_url(bucket, this.auth.access, this.auth.secret, this.auth.token,
-                       this.auth.user_ns + url_fragment, expires);
+  return signed_s3_url(bucket, this.auth.access, this.auth.secret, this.auth.token, url_fragment, expires);
 };
 
 Client.prototype.build_product_image_url = function (url_fragment) {
   if (!this.auth.buckets) {
     throw new Error('To build image urls you need to enable AWS access on the client...');
   }
-  return this.build_url(this.auth.buckets.image, url_fragment);
+  return this.build_url(this.auth.buckets.image, this.auth.user_ns + url_fragment);
 };
 
 Client.prototype.build_document_url = function (url_fragment) {
   if (!this.auth.buckets) {
     throw new Error('To build document urls you need to enable AWS access on the client...');
   }
-  return this.build_url(this.auth.buckets.document, url_fragment);
+  return this.build_url(this.auth.buckets.document, this.auth.user_ns + url_fragment);
 };
 
 Client.prototype.build_shipping_label_url = function (url_fragment) {

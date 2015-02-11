@@ -11,7 +11,8 @@ describe('URL builder', function () {
         image: 'image',
         document: 'document',
         shipping_label: 'shipping'
-      }
+      },
+      user_ns: 'ns1/'
     };
   });
 
@@ -25,12 +26,12 @@ describe('URL builder', function () {
 
   it('should build product image url', function () {
     client.build_product_image_url('product-foo.jpg')
-    expect(client.build_url).toHaveBeenCalledWith('image', 'product-foo.jpg');
+    expect(client.build_url).toHaveBeenCalledWith('image', 'ns1/product-foo.jpg');
   });
 
   it('should build document url', function () {
     client.build_document_url('invoice.pdf');
-    expect(client.build_url).toHaveBeenCalledWith('document', 'invoice.pdf');
+    expect(client.build_url).toHaveBeenCalledWith('document', 'ns1/invoice.pdf');
   });
 
   it('should build shipping label url', function () {
