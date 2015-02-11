@@ -1,5 +1,7 @@
 # GoodsCloud API client in JavaScript for Node.js
 
+[![Build Status](https://travis-ci.org/goodscloud/goodscloud-node.svg)](https://travis-ci.org/goodscloud/goodscloud-node)
+
 ## Installation
 
 Install the latest stable release of this module from [npmjs.org](https://www.npmjs.org/package/goodscloud):
