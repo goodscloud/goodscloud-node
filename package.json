@@ -16,9 +16,16 @@
     "node >= 0.10.29"
   ],
   "main": "goodscloud.js",
+  "scripts": {
+    "test": "jasmine"
+  },
   "dependencies": {
     "request": ">=2.37.0",
     "utf8": ">=2.0.0"
   },
-  "optionalDependencies": {}
+  "optionalDependencies": {},
+  "devDependencies": {
+    "jasmine": "^2.2.1",
+    "jasmine-core": "^2.2.0"
+  }
 }
